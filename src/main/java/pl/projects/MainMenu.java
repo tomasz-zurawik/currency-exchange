@@ -2,50 +2,49 @@ package pl.projects;
 
 import java.util.Scanner;
 
-public class Menu1 implements Runnable {
+public class MainMenu implements Runnable {
 
     private Scanner scanner = new Scanner(System.in);
 
     public void run() {
-        printMenu1();
+        printMainMenu();
     }
 
-    private void printMenu1() {
+    public void printMainMenu() {
 
         System.out.print(ConsoleColor.ANSI_CYAN + "********** KANTOR - MENU **********\n1 - Utwórz konto użytkonika\n2 - Zaloguj się\n3 - Panel administracyjny\n4 - Zakończ\nPodaj cyfrę: " + ConsoleColor.ANSI_RESET);
-        try {
-            Integer number = Integer.parseInt(scanner.nextLine());
+
+            String number = scanner.nextLine();
             switch (number) {
-                case 1:
+                case "1":
                     signIn();
+                    System.out.println("W trakcie implementacji");
+                    printMainMenu();
                     break;
-                case 2:
-                    MenuLogIn menuLogIn = new MenuLogIn();
+                case "2":
+                    LogInMenu logInMenu = new LogInMenu();
                     logIn();
-                    menuLogIn.printMenuLogIn();
+                    logInMenu.printLogInMenu();
                     break;
-                case 3:
+                case "3":
                     logInAsAdmin();
+                    System.out.println("W trakcie implementacji");
+                    printMainMenu();
                     break;
-                case 4:
+                case "4":
                     System.out.println("Wyjście");
                     break;
                 default:
                     System.out.println("********** Komunikat błędu **********\nWprowadź cyfrę z przedziału 1-4");
-                    printMenu1();
+                    printMainMenu();
                     break;
             }
-        } catch(IllegalArgumentException e) {
-                System.out.println("********** Komunikat błędu **********\nWprowadzone dane nie są liczbą całkowitą");
-                printMenu1();
-        }
     }
-    private void signIn() {
 
+    private void signIn() {
     }
     private void logIn() {
     }
     private void logInAsAdmin() {
-
     }
 }
